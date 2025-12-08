@@ -24,7 +24,8 @@ Surface Dial官方介绍：[Surface Dial 交互 - Windows apps | Microsoft Learn
 
 <img src=".\picture\620c4194e11f0f63d8fb1e02e46c7f43.jpg" style="zoom:33%;" />
 
-
+功能展示：
+[STM32 surface radial 旋钮_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1Bq2rBwEm3/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=f520e124187138f8a0f86d9606e8b841)
 
 ## 二. 硬件部分
 
