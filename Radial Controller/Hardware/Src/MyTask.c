@@ -48,6 +48,6 @@ void ProcessRGBUpdate(void)
     if (ws2812_update_flag)
     {
         ws2812_update_flag = 0;
-        WS2812_Rotating_Update(80, 2); // 亮度100，色相速度2
+        WS2812_Rotating_Update(80, 2); // 亮度80，色相速度2
     }
 }
