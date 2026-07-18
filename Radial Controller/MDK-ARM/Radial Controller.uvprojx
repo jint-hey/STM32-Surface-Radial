@@ -10,7 +10,7 @@
       <TargetName>Radial Controller</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6230000::V6.23::ARMCLANG</pCCUsed>
+      <pCCUsed>6240000::V6.24::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -619,6 +619,11 @@
               <FileType>5</FileType>
               <FilePath>..\Hardware\Inc\WS2812.h</FilePath>
             </File>
+            <File>
+              <FileName>MyTask.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Hardware\Inc\MyTask.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -643,6 +648,11 @@
               <FileName>MyLED.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\Src\MyLED.c</FilePath>
+            </File>
+            <File>
+              <FileName>MyTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\Src\MyTask.c</FilePath>
             </File>
           </Files>
         </Group>

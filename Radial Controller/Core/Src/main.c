@@ -31,6 +31,7 @@
 #include "MyEncoder.h"
 #include "MyDial.h"
 #include "WS2812.h"
+#include "MyTask.h"
 
 /* USER CODE END Includes */
 
@@ -53,10 +54,6 @@
 
 /* USER CODE BEGIN PV */
 
-int16_t Encoder_Dir = 0;
-
-uint8_t HID_Buffer[3] = {0x00};
-uint8_t press_flag = 0x00;
 extern USBD_HandleTypeDef hUsbDeviceFS;
 
 /* USER CODE END PV */
@@ -133,53 +130,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    // 读取编码器转动状态
-    int16_t Encoder_Dir = Encoder_Get_Div4();
-    // 根据编码器状态发送HID报告
-    // 正转
-    if (Encoder_Dir == 1 && press_flag == 0x00)
-    {
-      HID_Buffer[0] = 0x01;
-      HID_Buffer[1] = 0xC8; // 200
-      HID_Buffer[2] = 0x00;
-      USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)HID_Buffer, 3);
-      User_LED_Toggle();
-    }
-    // 反转
-    if (Encoder_Dir == -1 && press_flag == 0x00)
-    {
-      HID_Buffer[0] = 0x01;
-      HID_Buffer[1] = 0x38; //-200
-      HID_Buffer[2] = 0xFF;
-      USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)HID_Buffer, 3);
-      User_LED_Toggle();
-    }
-    // 按键处理
-    if (HAL_GPIO_ReadPin(Encoder_K_GPIO_Port, Encoder_K_Pin) == 0 && press_flag == 0x00)
-    {
-      HID_Buffer[0] = 0x01;
-      HID_Buffer[1] = 0x01;
-      HID_Buffer[2] = 0x00;
-      press_flag = 0xff;
-      USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)HID_Buffer, 3);
-      User_LED_Toggle();
-    }
-    if (HAL_GPIO_ReadPin(Encoder_K_GPIO_Port, Encoder_K_Pin) == 1 && press_flag == 0xff)
-    {
-      HID_Buffer[0] = 0x01;
-      HID_Buffer[1] = 0x00;
-      HID_Buffer[2] = 0x00;
-      press_flag = 0x00;
-      USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)HID_Buffer, 3);
-      User_LED_Toggle();
-    }
-
-    // 在主循环中执行RGB灯更新
-    if (ws2812_update_flag)
-    {
-      ws2812_update_flag = 0;
-      WS2812_Rotating_Update(80, 2); // 亮度100，色相速度2
-    }
+    ProcessEncoderAndButton();
+    ProcessRGBUpdate();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
