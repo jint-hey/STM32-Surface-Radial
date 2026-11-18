@@ -38,6 +38,7 @@ Surface Dial官方介绍：[Surface Dial 交互 - Windows apps | Microsoft Learn
 ### 1. 原理图和PCB
 
 原理图和PCB设计使用嘉立创EDA标准版
+开源链接：https://oshwhub.com/jt00000/stm32_dial_copy
 
 <img src=".\picture\Schematic_Radial-Controller_2025-12-07.png" style="zoom:80%;" />
 
